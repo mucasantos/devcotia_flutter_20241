@@ -1,4 +1,4 @@
-import 'package:devnoite_quiz/controller/quiz_controller.dart';
+import 'package:devnoite_quiz/quiz_app/controller/quiz_controller.dart';
 import 'package:flutter/material.dart';
 
 //Estanciar  o nosso controller

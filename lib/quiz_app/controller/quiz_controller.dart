@@ -1,4 +1,4 @@
-import 'package:devnoite_quiz/model/question.dart';
+import 'package:devnoite_quiz/quiz_app/model/question.dart';
 
 class QuizController {
   //o underline o identifica como private

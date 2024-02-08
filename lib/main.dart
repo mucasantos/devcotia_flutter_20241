@@ -1,4 +1,4 @@
-import 'package:devnoite_quiz/views/quiz_screen.dart';
+import 'package:devnoite_quiz/quiz_app/views/quiz_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const QuizApp());

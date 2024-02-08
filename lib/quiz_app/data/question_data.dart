@@ -1,28 +1,25 @@
-
-import 'package:devnoite_quiz/model/question.dart';
+import 'package:devnoite_quiz/quiz_app/model/question.dart';
 
 List<Question> questions = [
-    Question(
-        questionAns: false,
-        questionText:
-            "A construção da Torre Eiffel foi concluída em 31 de março de 1887"),
-    Question(
-        questionAns: false,
-        questionText:
-            "O relâmpago é visto antes de ser ouvido porque a luz viaja mais rápido que o som."),
-    Question(
-        questionAns: false, questionText: "A Cidade do Vaticano é um país."),
-    Question(
-        questionAns: false,
-        questionText: "Melbourne é a capital da Austrália."),
-    Question(
-        questionAns: false,
-        questionText:
-            "A penicilina foi descoberta no Vietnã para tratar a malária."),
-    Question(
-        questionAns: false,
-        questionText: "Os gatos não gostam do dono, e sim da casa."),
-  ];
+  Question(
+      questionAns: false,
+      questionText:
+          "A construção da Torre Eiffel foi concluída em 31 de março de 1887"),
+  Question(
+      questionAns: false,
+      questionText:
+          "O relâmpago é visto antes de ser ouvido porque a luz viaja mais rápido que o som."),
+  Question(questionAns: false, questionText: "A Cidade do Vaticano é um país."),
+  Question(
+      questionAns: false, questionText: "Melbourne é a capital da Austrália."),
+  Question(
+      questionAns: false,
+      questionText:
+          "A penicilina foi descoberta no Vietnã para tratar a malária."),
+  Question(
+      questionAns: false,
+      questionText: "Os gatos não gostam do dono, e sim da casa."),
+];
 
   /*
   // ignore_for_file: file_names
