@@ -1,4 +1,4 @@
-import 'package:devnoite_quiz/quiz_app/views/quiz_screen.dart';
+import 'package:devnoite_quiz/dashboard.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const QuizApp());
@@ -14,7 +14,7 @@ class QuizApp extends StatelessWidget {
         body: const SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: QuizScreen(),
+            child: Dashboard(),
           ),
         ),
       ),
