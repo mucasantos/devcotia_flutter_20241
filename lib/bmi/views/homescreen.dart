@@ -44,7 +44,11 @@ class HomeScreenBmi extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+
+          print(2^3);
           Navigator.of(context).push(
+
+
             MaterialPageRoute(
               builder: (context) => const ResultPage(),
             ),
