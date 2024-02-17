@@ -8,9 +8,13 @@ class AppContainer extends StatelessWidget {
   const AppContainer({
     super.key,
     this.components,
+    required this.cor,
+    this.selecionado = false,
   });
 
   final Widget? components;
+  final Color cor;
+  final bool selecionado;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +22,13 @@ class AppContainer extends StatelessWidget {
         margin: const EdgeInsets.all(15),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 34, 158, 193),
+          color: cor,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            width: 2,
-          ),
+          border: selecionado
+              ? Border.all(
+                  width: 1,
+                )
+              : null,
         ),
         child: components ?? const Icon(Icons.warning));
   }

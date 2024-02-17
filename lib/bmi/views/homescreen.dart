@@ -1,12 +1,23 @@
+
 import 'package:devnoite_quiz/bmi/service/colors.dart';
 import 'package:devnoite_quiz/bmi/views/result_page.dart';
 import 'package:devnoite_quiz/bmi/widgets/app_container.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeScreenBmi extends StatelessWidget {
+//Para Seleção de genêros, criar "enum"
+
+enum Genero { feminino, masculino }
+
+class HomeScreenBmi extends StatefulWidget {
   const HomeScreenBmi({super.key});
-  
+
+  @override
+  State<HomeScreenBmi> createState() => _HomeScreenBmiState();
+}
+
+class _HomeScreenBmiState extends State<HomeScreenBmi> {
+  Genero? generoSelecionado;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +31,53 @@ class HomeScreenBmi extends StatelessWidget {
       ),
       body: Column(
         children: [
-          GestureDetector(
-            onTap: () {
-              print("Cliquei");
-            },
-            child: const AppContainer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    generoSelecionado = Genero.masculino;
+                  });
+                },
+                child: AppContainer(
+                  selecionado: generoSelecionado == Genero.masculino,
+                  cor: generoSelecionado == Genero.masculino
+                      ? Colors.blueGrey
+                      : Colors.white,
+                  components: const Column(children: [
+                    Icon(
+                      FontAwesomeIcons.venus,
+                      size: 80,
+                    ),
+                    Text('Masculino'),
+                  ]),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    generoSelecionado = Genero.feminino;
+                  });
+                },
+                child: AppContainer(
+                  selecionado: generoSelecionado == Genero.feminino,
+                  cor: generoSelecionado == Genero.feminino
+                      ? Colors.blueGrey
+                      : Colors.white,
+                  components: const Column(children: [
+                    Icon(
+                      FontAwesomeIcons.mars,
+                      size: 80,
+                    ),
+                    Text('Feminino'),
+                  ]),
+                ),
+              ),
+            ],
           ),
           const AppContainer(
+            cor: Colors.blueGrey,
             components: Column(children: [
               Text('data'),
               Row(
@@ -44,11 +95,7 @@ class HomeScreenBmi extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
-          print(2^3);
           Navigator.of(context).push(
-
-
             MaterialPageRoute(
               builder: (context) => const ResultPage(),
             ),
