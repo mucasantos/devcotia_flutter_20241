@@ -1,5 +1,4 @@
-
-import 'package:devnoite_quiz/bmi/service/colors.dart';
+import 'package:devnoite_quiz/bmi/service/constants.dart';
 import 'package:devnoite_quiz/bmi/views/result_page.dart';
 import 'package:devnoite_quiz/bmi/widgets/app_container.dart';
 import 'package:flutter/material.dart';
@@ -18,14 +17,18 @@ class HomeScreenBmi extends StatefulWidget {
 
 class _HomeScreenBmiState extends State<HomeScreenBmi> {
   Genero? generoSelecionado;
+  int altura = 55;
+  int idade = 16;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kInactiveCardColour,
       appBar: AppBar(
+        backgroundColor: kInactiveCardColour,
+        centerTitle: true,
         title: const Text(
-          'Sample Code',
+          'Calculadora IMC',
           style: textStyle,
         ),
       ),
@@ -34,13 +37,13 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    generoSelecionado = Genero.masculino;
-                  });
-                },
+              Expanded(
                 child: AppContainer(
+                  onPressed: () {
+                    setState(() {
+                      generoSelecionado = Genero.masculino;
+                    });
+                  },
                   selecionado: generoSelecionado == Genero.masculino,
                   cor: generoSelecionado == Genero.masculino
                       ? Colors.blueGrey
@@ -49,18 +52,22 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
                     Icon(
                       FontAwesomeIcons.venus,
                       size: 80,
+                      color: kBottomContainerColour,
                     ),
-                    Text('Masculino'),
+                    Text(
+                      'Masculino',
+                      style: textStyle,
+                    ),
                   ]),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    generoSelecionado = Genero.feminino;
-                  });
-                },
+              Expanded(
                 child: AppContainer(
+                  onPressed: () {
+                    setState(() {
+                      generoSelecionado = Genero.feminino;
+                    });
+                  },
                   selecionado: generoSelecionado == Genero.feminino,
                   cor: generoSelecionado == Genero.feminino
                       ? Colors.blueGrey
@@ -69,26 +76,101 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
                     Icon(
                       FontAwesomeIcons.mars,
                       size: 80,
+                      color: kBottomContainerColour,
                     ),
-                    Text('Feminino'),
+                    Text(
+                      'Feminino',
+                      style: textStyle,
+                    ),
                   ]),
                 ),
               ),
             ],
           ),
-          const AppContainer(
+          AppContainer(
             cor: Colors.blueGrey,
             components: Column(children: [
-              Text('data'),
+              const Text(
+                'Altura',
+                style: TextStyle(fontSize: 30, color: kBottomContainerColour),
+              ),
               Row(
-                children: [Text("data")],
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(altura.toString(),
+                      style: const TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          color: kBottomContainerColour)),
+                  const Text(
+                    'cm',
+                    style:
+                        TextStyle(fontSize: 30, color: kBottomContainerColour),
+                  )
+                ],
               ),
-              Icon(
-                FontAwesomeIcons.mars,
-                size: 80,
-              ),
-              Text('Feminino'),
+              Slider(
+                  activeColor: kBottomContainerColour,
+                  inactiveColor: kInactiveCardColour,
+                  min: 50,
+                  max: 230,
+                  value: altura.toDouble(),
+                  onChanged: (value) {
+                    setState(() {
+                      altura = value.round();
+                    });
+                  }),
             ]),
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: AppContainer(
+                components: Column(children: [
+                  const Text("Idade"),
+                  Text(idade.toString()),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            //shape: const CircleBorder(),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              idade++;
+                            });
+                          },
+                          child: const Icon(
+                            Icons.add,
+                            color: kBottomContainerColour,
+                          )),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                          ),
+                          onPressed: () {
+
+                            setState(() {
+                              idade--;
+                            });
+                          },
+                          child: const Icon(
+                            Icons.remove,
+                            color: kBottomContainerColour,
+                          )),
+                    ],
+                  )
+                ]),
+                cor: kActiveCardColour,
+              )),
+            ],
           )
         ],
       ),
@@ -97,12 +179,17 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const ResultPage(),
+              builder: (context) => ResultPage(
+                resultado: altura.toString(),
+              ),
             ),
           );
         },
         tooltip: 'Increment Counter',
-        child: const Icon(Icons.check),
+        child: const Icon(
+          Icons.check,
+          color: kBottomContainerColour,
+        ),
       ),
     );
   }

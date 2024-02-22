@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
+  const ResultPage({
+    super.key,
+    required this.resultado,
+  });
+
+  final String resultado;
 
   @override
   Widget build(BuildContext context) {
@@ -9,10 +14,9 @@ class ResultPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Resultado'),
       ),
-      body: const Center(
-        child: Text('Aqui vai o resultado do cálculo'),
+      body:  Center(
+        child: Text(resultado),
       ),
-      
     );
   }
 }
