@@ -11,6 +11,13 @@ const primaryColor = Color(0xFFB1E6EF);
 const textStyle = TextStyle(
   color: kBottomContainerColour,
   fontSize: 22,
+  
+);
+
+const textNumStyle = TextStyle(
+  color: kBottomContainerColour,
+  fontSize: 40,
+  fontWeight: FontWeight.bold,
 );
 
 const boxShadow = [
