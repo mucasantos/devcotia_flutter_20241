@@ -1,6 +1,7 @@
 import 'package:devnoite_quiz/bmi/service/constants.dart';
 import 'package:devnoite_quiz/bmi/views/result_page.dart';
 import 'package:devnoite_quiz/bmi/widgets/app_container.dart';
+import 'package:devnoite_quiz/bmi/widgets/btncard.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -19,6 +20,8 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
   Genero? generoSelecionado;
   int altura = 55;
   int idade = 16;
+  int peso = 56;
+  String text = " Text.app is a simple text editor for Chrome OS and Chrome. It's fast, lets you open multiple files at once, has syntax highlighting,";
 
   @override
   Widget build(BuildContext context) {
@@ -129,43 +132,51 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
               Expanded(
                   child: AppContainer(
                 components: Column(children: [
-                  const Text("Idade"),
-                  Text(idade.toString()),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            //shape: const CircleBorder(),
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              idade++;
-                            });
-                          },
-                          child: const Icon(
-                            Icons.add,
-                            color: kBottomContainerColour,
-                          )),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15))),
-                          ),
-                          onPressed: () {
-
-                            setState(() {
-                              idade--;
-                            });
-                          },
-                          child: const Icon(
-                            Icons.remove,
-                            color: kBottomContainerColour,
-                          )),
-                    ],
+                  const Text(
+                    "Idade",
+                    style: textStyle,
+                  ),
+                  Text(
+                    idade.toString(),
+                    style: textStyle,
+                  ),
+                  BtnCard(
+                    decrease: () {
+                      setState(() {
+                        idade--;
+                      });
+                    },
+                    increase: () {
+                      setState(() {
+                        idade++;
+                      });
+                    },
+                  )
+                ]),
+                cor: kActiveCardColour,
+              )),
+              Expanded(
+                  child: AppContainer(
+                components: Column(children: [
+                  const Text(
+                    "Peso",
+                    style: textStyle,
+                  ),
+                  Text(
+                    peso.toString(),
+                    style: textStyle,
+                  ),
+                  BtnCard(
+                    decrease: () {
+                      setState(() {
+                        peso--;
+                      });
+                    },
+                    increase: () {
+                      setState(() {
+                        peso++;
+                      });
+                    },
                   )
                 ]),
                 cor: kActiveCardColour,
@@ -174,13 +185,17 @@ class _HomeScreenBmiState extends State<HomeScreenBmi> {
           )
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
+      bottomNavigationBar: const BottomAppBar(shape: CircularNotchedRectangle(),
+      height: 50,
+      color: Colors.white,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton.small(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => ResultPage(
-                resultado: altura.toString(),
+                resultado: text,
               ),
             ),
           );
